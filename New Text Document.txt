@@ -1,0 +1,2 @@
+hover colour: #1a365d;
+button colour: #2b6cb0

@@ -1,0 +1,2196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Cusp Dental Lab - Login</title>
+    <link rel="stylesheet" href="https://unpkg.com/@vscode/codicons@latest/dist/codicon.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f4f8; min-height: 100vh; display: flex; justify-content: center; align-items: center; }
+        
+/* ===== Locker page Styling LOGIN PAGE ===== */
+/* ===== CSS Main background colour of locker page styling */
+        .login-container {
+            background: rgb(178, 208, 242);
+            padding: 40px;
+            border-radius: 0px 00px 0px 0px;
+/* ====Locker HTML login page main bacnkground size  ===== */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: auto; /* changed from auto to fixed max-width for centering */
+            margin:2px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+/* ====Locker HTML login page main bacnkground size  ===== */
+
+
+/* =====Locker HTML main logo or image  ===== */
+        .login-container .logo {
+            text-align: Center;
+            font-size: 60px;
+            margin-bottom: 10px;}
+/* =====  Locker Logo / img sizing page Styling ===== */           
+
+
+/* ===== CSS Locker heading colour & sizing Styling ===== */
+        .login-container h1 
+            {text-align: center;
+            color: #192c5d;
+            font-size: 30px;
+            margin-bottom: 1px;}
+/* ===== CSS Locker heading colour & sizing Styling ===== */
+
+/* ===== CSS Locker after heading text colour & sizing Styling ===== */
+        .login-container .subtitle {
+            text-align: center;
+            color: #6290d5;
+            font-size: 14px;
+            margin-bottom: 25px;}
+/* ===== CSS Locker after heading text colour & sizing Styling ===== */
+
+
+/* ===== CSS Locker Gap size between username and password Styling ===== */
+        .login-container .form-group {
+            margin-bottom: 18px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+/* ===== CSS Locker Gap size between username and password Styling ===== */
+
+
+/* ===== CSS Locker Page username and passeord adjustment & colours Styling ===== */
+        .login-container .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #2d3748;
+            font-size: 14px;
+            width:50%;
+            text-align: left;
+            padding-left: 5px;
+        }
+/* ===== CSS Locker Colour of username and password ===== */
+
+/* ===== CSS Locker username and password boxes borders adjustement ===== */
+        .login-container .form-group input {
+            width: 50%;
+            padding: 10px 10px;
+            border: 2px solid #0e5dc5;
+            border-radius: 2px;
+            font-size: 15px;
+            transition: border-color 0.5s;
+        }
+/* ===== after click on boxes change of border colour and shadow effect Styling ===== */
+        .login-container .form-group input:focus {
+            border-color: #2b6cb0;
+            outline: none;
+            box-shadow: 0 0 0 3px #1a365d; }
+/* ===== after click on boxes change of border colour and shadow effect Styling ===== */
+
+/* =====Locker page signinbutton change of colour and shadow Styling ===== */
+        .login-container .btn-login {
+            width: 30%;
+            padding: 14px;
+            background: #2b6cb0;
+            color: white;
+            border: none;
+            border-radius: 2px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-left: 35%;
+            cursor: pointer;
+            transition: background 0.3s;
+            /* ===== ALIGNMENT CONTROL ===== */
+            /* Change text-align to left, center, or right as needed */
+            text-align: center;
+        }
+/* =====Locker page after pressing sign in button change of colour and shadow effect Styling ===== */
+        .login-container .btn-login:hover {
+            background: #021f5d; }
+/*error message colour and sizing Styling ===== */
+        .login-container .error-msg {
+            color: #df0404;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 10px;
+            display: none; }
+        .login-container .error-msg.show {
+            display: block;}
+/* ===== sign in button colour and sizing Styling ===== */
+
+/* =====Locker footer text colour and sizing Styling ===== */
+        .login-container .footer-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #6290d5; }
+/* =====Locker footer text colour and sizing Styling ===== */
+
+
+
+
+        /* ===== MAIN APP (Hidden until login) ===== */
+        #appContainer {
+            display: none;
+            width: 100%;
+        }
+        #appContainer.show {
+            display: block;
+        }
+
+        /* ===== REST OF STYLES ===== */
+/* =====CSS inside main header colour and sizing Styling ===== */
+        .header { background: #1a365d; color: white; padding: 15px 20px; border-radius: 00px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .header h1 { font-size: 24px; }
+
+/* =====CSS inside main header autosavebutton  ===== */
+        .save-status { background: #0bf06a73; padding: 5px 5px; border-radius: 2px; font-size: 10px; }
+        .header-right { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+
+/* =====CSS inside main header logoutbutton colour and sizing Styling ===== */
+        .logout-btn { background: #ffc002ce; color: white; border: none; padding: 6px 20px; border-radius: 2px; cursor: pointer; font-weight: 600; font-size: 10px; }
+        .logout-btn:hover { background: #de2424; }
+
+/* =====CSS inside main header TimerTab colour and sizing Styling ===== */
+        .session-timer { background: #2b6cb0; padding: 5px 5px; border-radius: 2px; font-size: 10px; color: white; }
+
+/* =====inside main header, Alltab colour and sizing Styling ===== */        
+        .nav { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; margin-left: 8px; }
+        .nav button { padding: 6px 20px; border: 1px solid #2b6cb0; border-radius: 2px; cursor: pointer; font-weight: bold; background: #e2e8f0; }
+        .nav button.active { background: #2b6cb0; color: white; }
+        .nav button:hover { background: #cbdaea; }
+        .page { display: none; }
+        .page.active { display: block; }
+        
+/* =====CSS inside main header, full Website background colour ===== */
+        .card { background: white; padding: 20px; border-radius: 2px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .card h2 { margin-bottom: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+        
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
+
+/* =====CSS inside main header, Applybutton colour ===== */
+        .btn { padding: 10px 20px; border: none; border-radius: 2px; cursor: pointer; font-weight: bold; font-size: 12px; }
+        .btn-success { background: #48bb78; color: white; }
+        .btn-success:hover { background: #38a169; }
+        .btn-primary { background: #2b6cb0; color: white; }
+        .btn-primary:hover { background: #1a365d; }
+        .btn-danger { background: #fc8181; color: white; }
+        .btn-danger:hover { background: #e53e3e; }
+        .btn-gold { background: #d69e2e; color: white; }
+        .btn-gold:hover { background: #b7791f; }
+
+/* =====CSS inside main header, clearbutton colour ===== */
+        .btn-secondary { background: #718096; color: white; }
+        .btn-secondary:hover { background: #4a5568; }
+        
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        th { background: #f7fafc; font-weight: bold; }
+        tr:hover { background: #f7fafc; }
+        
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .stat-box { background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #2b6cb0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .stat-box h3 { font-size: 12px; color: #718096; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-box p { font-size: 22px; font-weight: bold; color: #2d3748; }
+        .stat-box.green { border-left-color: #48bb78; }
+        .stat-box.orange { border-left-color: #ed8936; }
+        .stat-box.purple { border-left-color: #9f7aea; }
+        .stat-box.gold { border-left-color: #d69e2e; }
+        .stat-box.red { border-left-color: #fc8181; }
+        .stat-box.blue { border-left-color: #4299e1; }
+        
+        .filter-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; padding: 15px; background: #f7fafc; border-radius: 8px; align-items: center; }
+        .filter-row label { font-weight: bold; font-size: 14px; }
+        .filter-row input, .filter-row select { padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px; }
+        .filter-row .btn { padding: 8px 20px; }
+        
+        .toast { position: fixed; top: 20px; right: 20px; padding: 15px 25px; border-radius: 8px; color: white; font-weight: bold; z-index: 9999; animation: slideIn 0.3s; }
+        .toast-success { background: #48bb78; }
+        .toast-error { background: #fc8181; }
+        .toast-warning { background: #f6ad55; }
+        @keyframes slideIn { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        
+        .small-btn { padding: 4px 10px; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; }
+        .small-btn.edit { background: #bee3f8; color: #2a69ac; }
+        .small-btn.delete { background: #fed7d7; color: #9b2c2c; }
+        
+        .stock-info { padding: 10px; background: #f0f4f8; border-radius: 6px; margin-top: 10px; font-size: 14px; }
+        
+        .badge-expired { background: #fc8181; color: white; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+        .badge-warning { background: #f6ad55; color: white; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+        .badge-good { background: #48bb78; color: white; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+        
+        .list-tabs { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        .list-tabs button { padding: 8px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; background: #e2e8f0; }
+        .list-tabs button.active { background: #2b6cb0; color: white; }
+        
+        .list-content { display: none; }
+        .list-content.active { display: block; }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .summary-stats .stat-box {
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            border-left: 4px solid #2b6cb0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .summary-stats .stat-box .number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2d3748;
+        }
+        .summary-stats .stat-box .label {
+            font-size: 12px;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 5px;
+        }
+        .summary-stats .stat-box.green { border-left-color: #48bb78; }
+        .summary-stats .stat-box.orange { border-left-color: #ed8936; }
+        .summary-stats .stat-box.purple { border-left-color: #9f7aea; }
+        .summary-stats .stat-box.gold { border-left-color: #d69e2e; }
+        .summary-stats .stat-box.blue { border-left-color: #4299e1; }
+        .summary-stats .stat-box.red { border-left-color: #fc8181; }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            body * { visibility: hidden; }
+            #printArea, #printArea * { visibility: visible; }
+            #printArea { 
+                position: absolute; 
+                left: 0; 
+                top: 0; 
+                width: 100%; 
+                padding: 40px;
+                background: white;
+                visibility: visible !important;
+            }
+            .no-print { display: none !important; }
+            .filter-row { display: none !important; }
+            .nav { display: none !important; }
+            .header { display: none !important; }
+            .btn { display: none !important; }
+            .form-row { display: none !important; }
+            .form-group { display: none !important; }
+            .small-btn { display: none !important; }
+            .card { box-shadow: none !important; border: 1px solid #ddd !important; }
+            .stock-info { display: none !important; }
+            .summary-stats { display: grid !important; }
+        }
+
+        /* ===== REPORT STYLES ===== */
+        .report-header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 3px double #1a365d;
+            margin-bottom: 25px;
+        }
+        .report-header .lab-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1a365d;
+            letter-spacing: 2px;
+        }
+        .report-header .lab-details {
+            font-size: 14px;
+            color: #4a5568;
+            margin-top: 5px;
+        }
+        .report-header .report-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2b6cb0;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .report-header .report-period {
+            font-size: 14px;
+            color: #718096;
+            margin-top: 5px;
+        }
+        .report-footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 12px;
+            color: #718096;
+            text-align: center;
+        }
+        .report-summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .report-summary .item {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #2b6cb0;
+        }
+        .report-summary .item .label {
+            font-size: 12px;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .report-summary .item .value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2d3748;
+            margin-top: 5px;
+        }
+        .report-summary .item.green { border-left-color: #48bb78; }
+        .report-summary .item.orange { border-left-color: #ed8936; }
+        .report-summary .item.purple { border-left-color: #9f7aea; }
+        .report-summary .item.gold { border-left-color: #d69e2e; }
+        
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+        .report-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        .report-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .report-table tr:nth-child(even) {
+            background: #f7fafc;
+        }
+        .report-table .total-row {
+            background: #ebf8ff !important;
+            font-weight: bold;
+        }
+        .report-table .total-row td {
+            border-top: 2px solid #2b6cb0;
+        }
+        
+        .report-company-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 15px 0;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .report-company-info .info-item {
+            display: flex;
+            gap: 10px;
+        }
+        .report-company-info .info-item .label {
+            font-weight: bold;
+            color: #4a5568;
+            min-width: 100px;
+        }
+        .report-company-info .info-item .value {
+            color: #2d3748;
+        }
+
+        /* Session timeout warning */
+        .session-warning {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ed8936;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            z-index: 9998;
+            display: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: pulse 1s infinite;
+        }
+        .session-warning.show {
+            display: block;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+            .filter-row { flex-direction: column; }
+            .filter-row input, .filter-row select { width: 100%; }
+            .report-summary { grid-template-columns: 1fr 1fr; }
+            .report-company-info { grid-template-columns: 1fr; }
+            .summary-stats { grid-template-columns: 1fr 1fr; }
+            .login-container { padding: 25px; margin: 15px; }
+            .header-right { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- Session Warning -->
+<!-- ============================================ -->
+<div id="sessionWarning" class="session-warning">⏰ Session expiring soon! Please save your work.</div>
+
+<!-- ============================================ -->
+<!-- Locker HTML SETTING LOGIN PAGE -->
+<!-- ============================================ -->
+
+<div id="loginPage" class="login-container">
+    <div class="logo"><img src="../cusp lab/Pictures/cusp logo.png" alt="Cusp Dental Lab Logo" width="auto" height="100"></div>
+    <h1>Cusp Dental Lab</h1>
+    <p class="subtitle">Sign in to access your inventory</p>
+ <!-- Locker HTML main logo sizing -->
+
+ <!- Locker HTML LOGIN PAGE asking for username and password plceholder text and value -->
+    <div class="form-group">
+        <label>👤 USER NAME</label>
+        <input type="text" id="loginUsername" placeholder="Enter username" value="">
+    </div>
+    <div class="form-group">
+        <label>🔒 PASSWORD</label>
+        <input type="password" id="loginPassword" placeholder="Enter password" value="">
+    </div>
+<!-- Locker HTML LOGIN PAGE asking for username and password plceholder text and value -->
+
+<!-- Locker HTML LOGIN PAGE button text and error message text-->
+    <button class="btn-login" onclick="loginUser()"><span class="codicon codicon-key" aria-hidden="true"></span> Sign In</button>
+    <div id="loginError" class="error-msg">❌ Invalid username or password. Please try again.</div>
+    <div class="footer-text">Default: 000 000</div>
+</div>
+<!-- Locker HTML LOGIN PAGE button text and error message text-->
+
+
+<!-- ============================================ -->
+<!-- Locker HTML SETTING LOGIN PAGE -->
+<!-- ============================================ -->
+
+<!-- ============================================ -->
+<!-- Main Dashboard MAIN APPLICATION --> 
+<!-- ============================================ -->
+<div id="appContainer">
+
+    <div class="header">
+        <h1>Cusp Dental Lab - Inventory</h1>
+        <div class="header-right">
+
+<!-- =====HTML inside main header autosavebutton colour and sizing Styling =====  --> 
+            <span class="save-status" id="saveStatus">💾 Auto-saved</span>
+
+<!-- =====HTML inside main header useridtab colour and sizing Styling =====  --> 
+            <span id="userDisplay" style="background:#2b6cb0;padding:5px 5px;border-radius:2px;font-size:10px;">👤 Admin</span>
+
+<!-- =====HTML inside main header timertab colour and sizing Styling =====  --> 
+            <span class="session-timer" id="sessionTimer">⏱️ 12:00:00</span>
+
+<!-- =====HTML inside main header logoutbutton colour and sizing Styling =====  --> 
+            <button class="logout-btn" onclick="logoutUser()">Logout</button>
+        </div>
+    </div>
+
+        <div class="nav">
+        <button class="active" onclick="showPage('dashboard')">📊 Dashboard</button>
+        <button onclick="showPage('add')">➕ Additon of Items</button>
+        <button onclick="showPage('lists')">📋 List </button>
+        <button onclick="showPage('incoming')">📥 Incoming</button>
+        <button onclick="showPage('outgoing')">📤 Outgoing</button>
+        <button onclick="showPage('stock')">📦 Stock</button>
+        <button onclick="showPage('expiry')">⏰ Expiry</button>
+         </div>
+         <div class="container">
+<!-- ============================================ -->
+<!-- Main Dashboard MAIN APPLICATION --> 
+<!-- ============================================ -->
+
+        <!-- =====INSIDE TABE OF DASHBOARD----- -->    
+        <div id="page-dashboard" class="page active">
+            <div class="stats">
+                <div class="stat-box"><h3>Total Materials</h3><p id="dashMaterials">0</p></div>
+                <div class="stat-box green"><h3>Total Received</h3><p id="dashReceived">0</p></div>
+                <div class="stat-box orange"><h3>Total Issued</h3><p id="dashIssued">0</p></div>
+                <div class="stat-box purple"><h3>Total Cost</h3><p id="dashCost">SAR 0</p></div>
+            </div>
+            
+            <div class="card">
+                <div class="filter-row">
+                    <label>📅 Date Range:</label>
+                    <input type="date" id="dashStartDate">
+                    <span>to</span>
+                    <input type="date" id="dashEndDate">
+                    <button class="btn btn-primary" onclick="updateDashboard()">🔄 Apply</button>
+                    <button class="btn btn-secondary" onclick="clearDashFilter()">🗑️ Clear</button>
+                </div>
+                <h2>📋 Activity Report</h2>
+                <div style="overflow-x:auto;">
+                    <table>
+                        <thead><tr><th>Date</th><th>Type</th><th>Material</th><th>Company</th><th>Qty</th><th>Cost</th></tr></thead>
+                        <tbody id="dashTable"><tr><td colspan="6" style="text-align:center;color:#a0aec0;padding:30px;">No activity</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+     <!-- =====INSIDE TABE OF DASHBOARD----- -->
+
+        <!-- ===== ADDTION OF ITEMS ===== -->
+        <div id="page-add" class="page">
+            <div class="card">
+                <h2>➕ Add New Item</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select id="addType" onchange="toggleAddForm()">
+                            <option value="material">Material</option>
+                            <option value="company">Company</option>
+                            <option value="technician">Technician</option>
+                        </select>
+                    </div>
+                </div>
+
+
+            <!-- ===== ADDTION OF ITEMS ===== -->
+                <div id="addMaterialForm">
+                    <div class="form-row">
+                        <div class="form-group"><label>Material Name *</label><input type="text" id="addMatName" placeholder="e.g., Alginate Powder"></div>
+                        <div class="form-group"><label>Unit</label>
+                            <select id="addMatUnit">
+                                <option value="Box">Box</option><option value="Packet">Packet</option>
+                                <option value="Kg">Kg</option><option value="Gram">Gram</option>
+                                <option value="Liter">Liter</option><option value="mL">mL</option>
+                                <option value="Unit">Unit</option><option value="Sheet">Sheet</option>
+                                <option value="Bottle">Bottle</option><option value="Roll">Roll</option>
+                                <option value="Piece">Piece</option><option value="Set">Set</option>
+                                <option value="Tube">Tube</option><option value="Vial">Vial</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Company *</label>
+                            <select id="addMatCompany"><option value="">Select Company</option></select>
+                        </div>
+                        <div class="form-group"><label>Price (SAR) *</label><input type="number" id="addMatPrice" placeholder="12.50" step="0.01"></div>
+                    </div>
+                    <button class="btn btn-success" onclick="addMaterial()">✅ Add Material</button>
+                    <div style="margin-top:10px;padding:10px;background:#ebf8ff;border-radius:6px;font-size:13px;color:#2b6cb0;">
+                        💡 Add same material with different companies to compare prices!
+                    </div>
+                </div>
+                
+                <div id="addCompanyForm" style="display:none;">
+                    <div class="form-row">
+                        <div class="form-group"><label>Company Name *</label><input type="text" id="addCompName" placeholder="e.g., Dental Supplies Co."></div>
+                        <div class="form-group"><label>Contact</label><input type="text" id="addCompContact" placeholder="e.g., Ahmed"></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Phone</label><input type="text" id="addCompPhone" placeholder="e.g., 0300-1234567"></div>
+                        <div class="form-group"><label>Email</label><input type="email" id="addCompEmail" placeholder="e.g., info@company.com"></div>
+                    </div>
+                    <div class="form-group"><label>Address</label><input type="text" id="addCompAddress" placeholder="e.g., 123 Main Street"></div>
+                    <button class="btn btn-success" onclick="addCompany()">✅ Add Company</button>
+                </div>
+                
+                <div id="addTechnicianForm" style="display:none;">
+                    <div class="form-row">
+                        <div class="form-group"><label>Technician Name *</label><input type="text" id="addTechName" placeholder="e.g., John Smith"></div>
+                        <div class="form-group"><label>Specialization</label><input type="text" id="addTechSpec" placeholder="e.g., Crowns"></div>
+                    </div>
+                    <button class="btn btn-success" onclick="addTechnician()">✅ Add Technician</button>
+                </div>
+            </div>
+        </div>
+ <!-- ===== ADDTION OF ITEMS ===== -->
+
+
+ <!-- ===== LISTS ===== -->
+        <div id="page-lists" class="page">
+            <div class="card">
+                <h2>📋 All Lists</h2>
+                <div class="filter-row">
+                    <label>📅 Date Range:</label>
+                    <input type="date" id="listsStartDate">
+                    <span>to</span>
+                    <input type="date" id="listsEndDate">
+                    <button class="btn btn-primary" onclick="updateLists()">🔄 Apply</button>
+                    <button class="btn btn-secondary" onclick="clearListsFilter()">🗑️ Clear</button>
+                </div>
+                
+                <div class="summary-stats" id="listSummaryStats">
+                    <div class="stat-box blue">
+                        <div class="number" id="listTotalCompanies">0</div>
+                        <div class="label">🏢 Companies</div>
+                    </div>
+                    <div class="stat-box green">
+                        <div class="number" id="listTotalMaterials">0</div>
+                        <div class="label">📦 Materials</div>
+                    </div>
+                    <div class="stat-box purple">
+                        <div class="number" id="listTotalTechnicians">0</div>
+                        <div class="label">👨‍🔬 Technicians</div>
+                    </div>
+                    <div class="stat-box gold">
+                        <div class="number" id="listTotalCost">SAR 0</div>
+                        <div class="label">💰 Total Cost</div>
+                    </div>
+                    <div class="stat-box orange">
+                        <div class="number" id="listTotalReceived">0</div>
+                        <div class="label">📥 Total Received</div>
+                    </div>
+                    <div class="stat-box red">
+                        <div class="number" id="listTotalIssued">0</div>
+                        <div class="label">📤 Total Issued</div>
+                    </div>
+                </div>
+                
+                <div class="list-tabs">
+                    <button class="active" onclick="showListTab('companies')">🏢 Companies</button>
+                    <button onclick="showListTab('materials')">📦 Materials</button>
+                    <button onclick="showListTab('technicians')">👨‍🔬 Technicians</button>
+                </div>
+                
+                <div id="listCompanies" class="list-content active">
+                    <h3>Companies</h3>
+                    <div style="overflow-x:auto;">
+                        <table>
+                            <thead><tr><th>#</th><th>Name</th><th>Contact</th><th>Phone</th><th>Email</th><th>Total Spent</th></tr></thead>
+                            <tbody id="companyList"><tr><td colspan="6" style="text-align:center;color:#a0aec0;padding:20px;">No companies with transactions</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div id="listMaterials" class="list-content">
+                    <h3>Materials</h3>
+                    <div style="overflow-x:auto;">
+                        <table>
+                            <thead><tr><th>#</th><th>Name</th><th>Company</th><th>Unit</th><th>Received</th><th>Issued</th><th>Stock</th></tr></thead>
+                            <tbody id="materialList"><tr><td colspan="7" style="text-align:center;color:#a0aec0;padding:20px;">No materials with transactions</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div id="listTechnicians" class="list-content">
+                    <h3>Technicians</h3>
+                    <div style="overflow-x:auto;">
+                        <table>
+                            <thead><tr><th>#</th><th>Name</th><th>Specialization</th><th>Items Issued</th><th>Total Cost</th></tr></thead>
+                            <tbody id="technicianList"><tr><td colspan="5" style="text-align:center;color:#a0aec0;padding:20px;">No technicians with transactions</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+ <!-- ===== LISTS ===== -->
+  
+        <!-- ===== INCOMING ===== -->
+        <div id="page-incoming" class="page">
+            <div class="card">
+                <h2>📥 Receive Material</h2>
+                <div class="form-row">
+                    <div class="form-group"><label>Material *</label>
+                        <select id="incMaterial" onchange="autoFillIncoming()">
+                            <option value="">Select Material</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Company *</label>
+                        <select id="incCompany"><option value="">Select Company</option></select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Quantity *</label><input type="number" id="incQty" value="1" min="1"></div>
+                    <div class="form-group"><label>Unit</label>
+                        <select id="incUnit">
+                            <option value="Box">Box</option><option value="Packet">Packet</option>
+                            <option value="Kg">Kg</option><option value="Gram">Gram</option>
+                            <option value="Liter">Liter</option><option value="mL">mL</option>
+                            <option value="Unit">Unit</option><option value="Sheet">Sheet</option>
+                            <option value="Bottle">Bottle</option><option value="Roll">Roll</option>
+                            <option value="Piece">Piece</option><option value="Set">Set</option>
+                            <option value="Tube">Tube</option><option value="Vial">Vial</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Price per Unit (SAR) *</label><input type="number" id="incPrice" step="0.01"></div>
+                    <div class="form-group"><label>Discount (%)</label><input type="number" id="incDiscount" value="0" step="0.1"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Expiry</label>
+                        <select id="incExpiryType" onchange="toggleExpiry()">
+                            <option value="date">Select Date</option>
+                            <option value="unlimited">Unlimited</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="incExpiryGroup"><input type="date" id="incExpiry"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Location</label><input type="text" id="incLocation" placeholder="Shelf B-3"></div>
+                    <div class="form-group"><label>Batch</label><input type="text" id="incBatch" placeholder="BATCH-001"></div>
+                </div>
+                <div class="form-group"><label>Notes</label><textarea id="incNotes" rows="2"></textarea></div>
+                <button class="btn btn-success" onclick="saveIncoming()">✅ Save</button>
+            </div>
+            
+            <div class="card">
+                <h2>📋 Incoming Records</h2>
+                <div class="filter-row">
+                    <label>📅 Date Range:</label>
+                    <input type="date" id="incStartDate">
+                    <span>to</span>
+                    <input type="date" id="incEndDate">
+                    <button class="btn btn-primary" onclick="updateIncoming()">🔄 Apply</button>
+                    <button class="btn btn-secondary" onclick="clearIncFilter()">🗑️ Clear</button>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table>
+                        <thead><tr><th>Date</th><th>Material</th><th>Company</th><th>Qty</th><th>Unit</th><th>Total</th><th>Expiry</th><th>Actions</th></tr></thead>
+                        <tbody id="incomingTable"><tr><td colspan="8" style="text-align:center;color:#a0aec0;padding:20px;">No records</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== OUTGOING ===== -->
+        <div id="page-outgoing" class="page">
+            <div class="card">
+                <h2>📤 Issue Material</h2>
+                <div class="form-row">
+                    <div class="form-group"><label>Material *</label>
+                        <select id="outMaterial" onchange="autoFillOutgoing()">
+                            <option value="">Select Material</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Company *</label>
+                        <select id="outCompany"><option value="">Select Company</option></select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Technician *</label>
+                        <select id="outTech"><option value="">Select Technician</option></select>
+                    </div>
+                    <div class="form-group"><label>Quantity *</label><input type="number" id="outQty" value="1" min="1"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Unit</label>
+                        <select id="outUnit">
+                            <option value="Box">Box</option><option value="Packet">Packet</option>
+                            <option value="Kg">Kg</option><option value="Gram">Gram</option>
+                            <option value="Liter">Liter</option><option value="mL">mL</option>
+                            <option value="Unit">Unit</option><option value="Sheet">Sheet</option>
+                            <option value="Bottle">Bottle</option><option value="Roll">Roll</option>
+                            <option value="Piece">Piece</option><option value="Set">Set</option>
+                            <option value="Tube">Tube</option><option value="Vial">Vial</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Case #</label><input type="text" id="outCase" placeholder="C2026-045"></div>
+                </div>
+                <div class="form-group"><label>Notes</label><textarea id="outNotes" rows="2"></textarea></div>
+                <div class="stock-info" id="outStockInfo">💡 Select a material to view stock</div>
+                <button class="btn btn-primary" onclick="saveOutgoing()">📤 Issue</button>
+            </div>
+            
+            <div class="card">
+                <h2>📋 Outgoing Records</h2>
+                <div class="filter-row">
+                    <label>📅 Date Range:</label>
+                    <input type="date" id="outStartDate">
+                    <span>to</span>
+                    <input type="date" id="outEndDate">
+                    <button class="btn btn-primary" onclick="updateOutgoing()">🔄 Apply</button>
+                    <button class="btn btn-secondary" onclick="clearOutFilter()">🗑️ Clear</button>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table>
+                        <thead><tr><th>Date</th><th>Material</th><th>Company</th><th>Technician</th><th>Qty</th><th>Unit</th><th>Cost</th><th>Actions</th></tr></thead>
+                        <tbody id="outgoingTable"><tr><td colspan="8" style="text-align:center;color:#a0aec0;padding:20px;">No records</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== STOCK ===== -->
+        <div id="page-stock" class="page">
+            <div class="card no-print">
+                <h2>📦 Stock Position</h2>
+                <div class="filter-row">
+                    <label>📅 Date Range:</label>
+                    <input type="date" id="stockStartDate">
+                    <span>to</span>
+                    <input type="date" id="stockEndDate">
+                    <button class="btn btn-primary" onclick="updateStock()">🔄 Apply</button>
+                    <button class="btn btn-secondary" onclick="clearStockFilter()">🗑️ Clear</button>
+                    <button class="btn btn-gold" onclick="printStockReport()" style="margin-left:auto;">🖨️ Print Report</button>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table>
+                        <thead><tr><th>Material</th><th>Company</th><th>Unit</th><th>Received</th><th>Issued</th><th>Stock</th><th>Price</th></tr></thead>
+                        <tbody id="stockTable"><tr><td colspan="7" style="text-align:center;color:#a0aec0;padding:20px;">No materials</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="printArea" style="display:none;">
+                <div class="report-header">
+                    <div class="lab-name" id="reportLabName">🦷 Dental Lab</div>
+                    <div class="lab-details" id="reportVat">VAT: 123456789 | CR: 987654321</div>
+                    <div class="lab-details" id="reportAddress">123 Dental Street, Riyadh, Saudi Arabia</div>
+                    <div class="report-title">📊 Stock Position Report</div>
+                    <div class="report-period" id="reportPeriod">For the Month of January 2026</div>
+                </div>
+
+                <div class="report-company-info">
+                    <div class="info-item"><span class="label">Company Name:</span><span class="value" id="reportCompanyName">Dental Lab</span></div>
+                    <div class="info-item"><span class="label">VAT Number:</span><span class="value" id="reportVatNumber">123456789</span></div>
+                    <div class="info-item"><span class="label">CR Number:</span><span class="value" id="reportCrNumber">987654321</span></div>
+                    <div class="info-item"><span class="label">Report Date:</span><span class="value" id="reportDate">2026-01-25</span></div>
+                </div>
+
+                <div class="report-summary">
+                    <div class="item green"><div class="label">Total Materials</div><div class="value" id="reportTotalMaterials">0</div></div>
+                    <div class="item orange"><div class="label">Total Received</div><div class="value" id="reportTotalReceived">0</div></div>
+                    <div class="item purple"><div class="label">Total Issued</div><div class="value" id="reportTotalIssued">0</div></div>
+                    <div class="item gold"><div class="label">Total Stock Value</div><div class="value" id="reportTotalValue">SAR 0.00</div></div>
+                </div>
+
+                <table class="report-table">
+                    <thead><tr><th>#</th><th>Material Name</th><th>Company</th><th>Unit</th><th style="text-align:center;">Received</th><th style="text-align:center;">Issued</th><th style="text-align:center;">Stock</th><th style="text-align:right;">Price (SAR)</th><th style="text-align:right;">Value (SAR)</th></tr></thead>
+                    <tbody id="reportTableBody"><tr><td colspan="9" style="text-align:center;padding:30px;color:#a0aec0;">No data available</td></tr></tbody>
+                    <tfoot><tr class="total-row"><td colspan="7" style="text-align:right;font-weight:bold;">TOTAL</td><td style="text-align:right;font-weight:bold;" id="reportTotalPrice">SAR 0.00</td><td style="text-align:right;font-weight:bold;" id="reportTotalValue2">SAR 0.00</td></tr></tfoot>
+                </table>
+
+                <div class="report-footer">
+                    <p>This is a computer-generated report. For any queries, please contact the finance department.</p>
+                    <p>Generated on: <span id="reportGeneratedDate"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== EXPIRY ===== -->
+        <div id="page-expiry" class="page">
+            <div class="card">
+                <h2>⏰ Expire Material Deadline</h2>
+                <div class="filter-row">
+                    <label>📅 Show:</label>
+                    <select id="expiryFilter" onchange="updateExpiry()">
+                        <option value="all">All Materials</option>
+                        <option value="expired">Expired Only</option>
+                        <option value="warning">Expiring Soon (30 days)</option>
+                        <option value="good">In Stock & Safe</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="updateExpiry()">🔄 Refresh</button>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table>
+                        <thead><tr><th>Material</th><th>Company</th><th>Batch</th><th>Stock</th><th>Unit</th><th>Expiry Date</th><th>Status</th><th>Days Left</th></tr></thead>
+                        <tbody id="expiryTable"><tr><td colspan="8" style="text-align:center;color:#a0aec0;padding:20px;">No materials with expiry dates</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // ============================================================
+    // 🔐 Locker Page USER CREDENTIALS - CHANGE THESE HERE
+    // ============================================================
+    var VALID_USERNAME = "cusplab0098";
+    var VALID_PASSWORD = "12345678";
+    // ============================================================
+
+    // ============================================
+    // SESSION MANAGEMENT
+    // ============================================
+    var SESSION_DURATION = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
+    var sessionTimeout = null;
+    var sessionWarningTimeout = null;
+    var sessionTimerInterval = null;
+    var sessionStartTime = null;
+
+    function startSessionTimer() {
+        sessionStartTime = Date.now();
+        updateSessionTimer();
+        sessionTimerInterval = setInterval(updateSessionTimer, 1000);
+        
+        // Set warning at 11 hours 30 minutes (30 minutes before logout)
+        sessionWarningTimeout = setTimeout(function() {
+            document.getElementById('sessionWarning').classList.add('show');
+            showToast('⚠️ Your session will expire in 30 minutes! Please save your work.', 'warning');
+        }, 11 * 60 * 60 * 1000 + 30 * 60 * 1000);
+        
+        // Set logout at 12 hours
+        sessionTimeout = setTimeout(function() {
+            document.getElementById('sessionWarning').classList.remove('show');
+            showToast('⏰ Session expired. Please login again.', 'error');
+            alert('Your session has expired after 12 hours. You will be logged out.');
+            logoutUser();
+        }, SESSION_DURATION);
+    }
+
+    function updateSessionTimer() {
+        if (!sessionStartTime) return;
+        var elapsed = Date.now() - sessionStartTime;
+        var remaining = SESSION_DURATION - elapsed;
+        
+        if (remaining <= 0) {
+            document.getElementById('sessionTimer').textContent = '⏱️ 00:00:00';
+            return;
+        }
+        
+        var hours = Math.floor(remaining / (60 * 60 * 1000));
+        var minutes = Math.floor((remaining % (60 * 60 * 1000)) / (60 * 1000));
+        var seconds = Math.floor((remaining % (60 * 1000)) / 1000);
+        
+        document.getElementById('sessionTimer').textContent = 
+            '⏱️ ' + String(hours).padStart(2, '0') + ':' + 
+            String(minutes).padStart(2, '0') + ':' + 
+            String(seconds).padStart(2, '0');
+    }
+
+    function clearSessionTimers() {
+        if (sessionTimeout) {
+            clearTimeout(sessionTimeout);
+            sessionTimeout = null;
+        }
+        if (sessionWarningTimeout) {
+            clearTimeout(sessionWarningTimeout);
+            sessionWarningTimeout = null;
+        }
+        if (sessionTimerInterval) {
+            clearInterval(sessionTimerInterval);
+            sessionTimerInterval = null;
+        }
+        document.getElementById('sessionWarning').classList.remove('show');
+    }
+
+    // ============================================
+    // LOGIN / LOGOUT
+    // ============================================
+    function loginUser() {
+        var username = document.getElementById('loginUsername').value.trim();
+        var password = document.getElementById('loginPassword').value.trim();
+        var errorEl = document.getElementById('loginError');
+        
+        if (username === VALID_USERNAME && password === VALID_PASSWORD) {
+            errorEl.classList.remove('show');
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('appContainer').classList.add('show');
+            document.getElementById('userDisplay').textContent = '👤 ' + username;
+            
+            // Save login state
+            localStorage.setItem('dentalSession', 'true');
+            
+            // Load data after login
+            loadData();
+            updateAll();
+            toggleExpiry();
+            
+            // Start session timer
+            clearSessionTimers();
+            startSessionTimer();
+            
+            showToast('✅ Welcome back, ' + username + '! Session: 12 hours', 'success');
+        } else {
+            errorEl.classList.add('show');
+            errorEl.textContent = '❌ Invalid username or password. Please try again.';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('loginPassword').focus();
+        }
+    }
+
+    function logoutUser() {
+        if (confirm('Are you sure you want to logout?')) {
+            saveData();
+            clearSessionTimers();
+            localStorage.removeItem('dentalSession');
+            document.getElementById('appContainer').classList.remove('show');
+            document.getElementById('loginPage').style.display = 'block';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('loginError').classList.remove('show');
+            document.getElementById('sessionTimer').textContent = '⏱️ 12:00:00';
+            showToast('👋 Logged out successfully', 'info');
+        }
+    }
+
+    // Enter key to login
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            if (document.getElementById('loginPage').style.display !== 'none') {
+                loginUser();
+            }
+        }
+    });
+
+    // ============================================
+    // COMPANY SETTINGS
+    // ============================================
+    var COMPANY_NAME = "🦷 Dental Lab";
+    var VAT_NUMBER = "123456789";
+    var CR_NUMBER = "987654321";
+    var COMPANY_ADDRESS = "123 Dental Street, Riyadh, Saudi Arabia";
+
+    // ============================================
+    // DATA
+    // ============================================
+    var data = {
+        companies: [],
+        materials: [],
+        technicians: [],
+        incoming: [],
+        outgoing: []
+    };
+    
+    var nextId = {
+        company: 1,
+        material: 1,
+        technician: 1,
+        incoming: 1,
+        outgoing: 1
+    };
+
+    // ============================================
+    // TOAST NOTIFICATIONS
+    // ============================================
+    function showToast(msg, type) {
+        type = type || 'success';
+        var container = document.getElementById('toastContainer');
+        if (!container) {
+            var newContainer = document.createElement('div');
+            newContainer.id = 'toastContainer';
+            newContainer.style.position = 'fixed';
+            newContainer.style.top = '20px';
+            newContainer.style.right = '20px';
+            newContainer.style.zIndex = '9999';
+            document.body.appendChild(newContainer);
+            container = newContainer;
+        }
+        var toast = document.createElement('div');
+        toast.className = 'toast toast-' + type;
+        toast.textContent = msg;
+        container.appendChild(toast);
+        setTimeout(function() {
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.3s';
+            setTimeout(function() { toast.remove(); }, 300);
+        }, 3000);
+    }
+
+    // ============================================
+    // SAVE & LOAD
+    // ============================================
+    function saveData() {
+        localStorage.setItem('dentalData', JSON.stringify(data));
+        var status = document.getElementById('saveStatus');
+        if (status) {
+            status.textContent = '💾 Saved';
+            setTimeout(function() {
+                status.textContent = '💾 Auto-saved';
+            }, 2000);
+        }
+    }
+
+    function loadData() {
+        var saved = localStorage.getItem('dentalData');
+        if (saved) {
+            try {
+                var parsed = JSON.parse(saved);
+                data = parsed;
+                for (var key in nextId) {
+                    var arr = key + 's';
+                    if (data[arr]) {
+                        var max = 0;
+                        for (var i = 0; i < data[arr].length; i++) {
+                            if (data[arr][i].id > max) max = data[arr][i].id;
+                        }
+                        nextId[key] = max + 1;
+                    }
+                }
+            } catch(e) {
+                console.log('Error loading data:', e);
+            }
+        }
+    }
+
+    // ============================================
+    // HELPERS
+    // ============================================
+    function getMaterial(id) {
+        for (var i = 0; i < data.materials.length; i++) {
+            if (data.materials[i].id === id) return data.materials[i];
+        }
+        return null;
+    }
+
+    function getMaterialName(id) {
+        var m = getMaterial(id);
+        return m ? m.name : null;
+    }
+
+    function getMaterialStock(id) {
+        var received = 0;
+        var issued = 0;
+        for (var i = 0; i < data.incoming.length; i++) {
+            if (data.incoming[i].material_id === id) received += data.incoming[i].quantity;
+        }
+        for (var i = 0; i < data.outgoing.length; i++) {
+            if (data.outgoing[i].material_id === id) issued += data.outgoing[i].quantity;
+        }
+        return received - issued;
+    }
+
+    function getCompanyStock(id, company) {
+        var received = 0;
+        var issued = 0;
+        for (var i = 0; i < data.incoming.length; i++) {
+            if (data.incoming[i].material_id === id && data.incoming[i].company === company) {
+                received += data.incoming[i].quantity;
+            }
+        }
+        for (var i = 0; i < data.outgoing.length; i++) {
+            if (data.outgoing[i].material_id === id && data.outgoing[i].company === company) {
+                issued += data.outgoing[i].quantity;
+            }
+        }
+        return received - issued;
+    }
+
+    function isInRange(dateStr, startDate, endDate) {
+        if (!dateStr) return false;
+        if (!startDate && !endDate) return true;
+        var date = new Date(dateStr);
+        date.setHours(0,0,0,0);
+        if (startDate) {
+            var start = new Date(startDate);
+            start.setHours(0,0,0,0);
+            if (date < start) return false;
+        }
+        if (endDate) {
+            var end = new Date(endDate);
+            end.setHours(0,0,0,0);
+            if (date > end) return false;
+        }
+        return true;
+    }
+
+    function formatCurrency(amount) {
+        return 'SAR ' + amount.toFixed(2);
+    }
+
+    function formatDate(date) {
+        if (!date) return '-';
+        var d = new Date(date);
+        return d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear();
+    }
+
+    function getMonthYear() {
+        var d = new Date();
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        return months[d.getMonth()] + ' ' + d.getFullYear();
+    }
+
+    // ============================================
+    // PAGE NAVIGATION
+    // ============================================
+    function showPage(page) {
+        document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+        var target = document.getElementById('page-' + page);
+        if (target) target.classList.add('active');
+        document.querySelectorAll('.nav button').forEach(function(b) { b.classList.remove('active'); });
+        document.querySelectorAll('.nav button').forEach(function(b) {
+            if (b.textContent.toLowerCase().includes(page)) b.classList.add('active');
+        });
+        if (page === 'dashboard') updateDashboard();
+        if (page === 'lists') updateLists();
+        if (page === 'incoming') updateIncoming();
+        if (page === 'outgoing') updateOutgoing();
+        if (page === 'stock') updateStock();
+        if (page === 'expiry') updateExpiry();
+    }
+
+    // ============================================
+    // ADD FUNCTIONS
+    // ============================================
+    function toggleAddForm() {
+        var type = document.getElementById('addType').value;
+        document.getElementById('addMaterialForm').style.display = type === 'material' ? 'block' : 'none';
+        document.getElementById('addCompanyForm').style.display = type === 'company' ? 'block' : 'none';
+        document.getElementById('addTechnicianForm').style.display = type === 'technician' ? 'block' : 'none';
+        if (type === 'material') updateAddCompanyDropdown();
+    }
+
+    function updateAddCompanyDropdown() {
+        var select = document.getElementById('addMatCompany');
+        if (!select) return;
+        var val = select.value;
+        select.innerHTML = '<option value="">Select Company</option>';
+        for (var i = 0; i < data.companies.length; i++) {
+            select.innerHTML += '<option value="' + data.companies[i].name + '">' + data.companies[i].name + '</option>';
+        }
+        select.value = val;
+    }
+
+    function addMaterial() {
+        var name = document.getElementById('addMatName').value.trim();
+        var unit = document.getElementById('addMatUnit').value;
+        var company = document.getElementById('addMatCompany').value;
+        var price = parseFloat(document.getElementById('addMatPrice').value);
+
+        if (!name) { showToast('⚠️ Enter material name!', 'error'); return; }
+        if (!company) { showToast('⚠️ Select a company!', 'error'); return; }
+        if (!price || price <= 0) { showToast('⚠️ Enter valid price!', 'error'); return; }
+
+        for (var i = 0; i < data.materials.length; i++) {
+            if (data.materials[i].name.toLowerCase() === name.toLowerCase() && 
+                data.materials[i].company === company) {
+                showToast('⚠️ Material "' + name + '" with "' + company + '" already exists!', 'error');
+                return;
+            }
+        }
+
+        data.materials.push({
+            id: nextId.material++,
+            name: name,
+            company: company,
+            price: price,
+            unit: unit,
+            code: 'MAT-' + String(nextId.material).padStart(3, '0')
+        });
+
+        document.getElementById('addMatName').value = '';
+        document.getElementById('addMatPrice').value = '';
+        saveData();
+        updateAll();
+        showToast('✅ Material "' + name + '" added for "' + company + '" at SAR ' + price.toFixed(2));
+        alert('✅ Material "' + name + '" added!\nCompany: ' + company + '\nPrice: SAR ' + price.toFixed(2));
+    }
+
+    function addCompany() {
+        var name = document.getElementById('addCompName').value.trim();
+        if (!name) { showToast('⚠️ Enter company name!', 'error'); return; }
+
+        for (var i = 0; i < data.companies.length; i++) {
+            if (data.companies[i].name.toLowerCase() === name.toLowerCase()) {
+                showToast('⚠️ Company "' + name + '" already exists!', 'error');
+                return;
+            }
+        }
+
+        data.companies.push({
+            id: nextId.company++,
+            name: name,
+            contact: document.getElementById('addCompContact').value.trim() || '',
+            phone: document.getElementById('addCompPhone').value.trim() || '',
+            email: document.getElementById('addCompEmail').value.trim() || '',
+            address: document.getElementById('addCompAddress').value.trim() || ''
+        });
+
+        document.getElementById('addCompName').value = '';
+        document.getElementById('addCompContact').value = '';
+        document.getElementById('addCompPhone').value = '';
+        document.getElementById('addCompEmail').value = '';
+        document.getElementById('addCompAddress').value = '';
+        saveData();
+        updateAll();
+        showToast('✅ Company "' + name + '" added!');
+        alert('✅ Company "' + name + '" added successfully!');
+    }
+
+    function addTechnician() {
+        var name = document.getElementById('addTechName').value.trim();
+        if (!name) { showToast('⚠️ Enter technician name!', 'error'); return; }
+
+        for (var i = 0; i < data.technicians.length; i++) {
+            if (data.technicians[i].name.toLowerCase() === name.toLowerCase()) {
+                showToast('⚠️ Technician "' + name + '" already exists!', 'error');
+                return;
+            }
+        }
+
+        data.technicians.push({
+            id: nextId.technician++,
+            name: name,
+            specialization: document.getElementById('addTechSpec').value.trim() || ''
+        });
+
+        document.getElementById('addTechName').value = '';
+        document.getElementById('addTechSpec').value = '';
+        saveData();
+        updateAll();
+        showToast('✅ Technician "' + name + '" added!');
+        alert('✅ Technician "' + name + '" added successfully!');
+    }
+
+    // ============================================
+    // DELETE FUNCTIONS
+    // ============================================
+    function deleteMaterial(id) {
+        if (!confirm('Delete this material?')) return;
+        data.materials = data.materials.filter(function(m) { return m.id !== id; });
+        saveData();
+        updateAll();
+        showToast('✅ Material deleted!');
+    }
+
+    function deleteCompany(id) {
+        if (!confirm('Delete this company?')) return;
+        data.companies = data.companies.filter(function(c) { return c.id !== id; });
+        saveData();
+        updateAll();
+        showToast('✅ Company deleted!');
+    }
+
+    function deleteTechnician(id) {
+        if (!confirm('Delete this technician?')) return;
+        data.technicians = data.technicians.filter(function(t) { return t.id !== id; });
+        saveData();
+        updateAll();
+        showToast('✅ Technician deleted!');
+    }
+
+    function deleteIncoming(id) {
+        if (!confirm('Delete this record?')) return;
+        data.incoming = data.incoming.filter(function(item) { return item.id !== id; });
+        saveData();
+        updateAll();
+        showToast('✅ Record deleted!');
+    }
+
+    function deleteOutgoing(id) {
+        if (!confirm('Delete this record?')) return;
+        data.outgoing = data.outgoing.filter(function(item) { return item.id !== id; });
+        saveData();
+        updateAll();
+        showToast('✅ Record deleted!');
+    }
+
+    // ============================================
+    // AUTO-FILL FUNCTIONS
+    // ============================================
+    function autoFillIncoming() {
+        var id = parseInt(document.getElementById('incMaterial').value);
+        var material = getMaterial(id);
+        if (material) {
+            document.getElementById('incCompany').value = material.company;
+            document.getElementById('incUnit').value = material.unit;
+            document.getElementById('incPrice').value = material.price;
+        }
+    }
+
+    function autoFillOutgoing() {
+        var id = parseInt(document.getElementById('outMaterial').value);
+        var material = getMaterial(id);
+        var stockInfo = document.getElementById('outStockInfo');
+        
+        if (material) {
+            document.getElementById('outCompany').value = material.company;
+            document.getElementById('outUnit').value = material.unit;
+            
+            var stock = getCompanyStock(id, material.company);
+            if (stock > 0) {
+                stockInfo.innerHTML = '📊 Stock: ' + stock + ' ' + material.unit + ' available from ' + material.company;
+                stockInfo.style.color = '#2b6cb0';
+            } else {
+                stockInfo.innerHTML = '⚠️ No stock available for "' + material.name + '" from ' + material.company;
+                stockInfo.style.color = '#e53e3e';
+            }
+        } else {
+            stockInfo.innerHTML = '💡 Select a material to view stock';
+            stockInfo.style.color = '#4a5568';
+        }
+    }
+
+    // ============================================
+    // SAVE INCOMING
+    // ============================================
+    function saveIncoming() {
+        var material_id = parseInt(document.getElementById('incMaterial').value);
+        var company = document.getElementById('incCompany').value;
+        var quantity = parseInt(document.getElementById('incQty').value);
+        var unit = document.getElementById('incUnit').value;
+        var price = parseFloat(document.getElementById('incPrice').value);
+        var discount = parseFloat(document.getElementById('incDiscount').value) || 0;
+        var expiryType = document.getElementById('incExpiryType').value;
+        var expiry = expiryType === 'unlimited' ? 'unlimited' : document.getElementById('incExpiry').value;
+        var location = document.getElementById('incLocation').value.trim();
+        var batch = document.getElementById('incBatch').value.trim();
+        var notes = document.getElementById('incNotes').value.trim();
+
+        if (!material_id) { showToast('⚠️ Select a material!', 'error'); return; }
+        if (!company) { showToast('⚠️ Select a company!', 'error'); return; }
+        if (!quantity || quantity < 1) { showToast('⚠️ Enter valid quantity!', 'error'); return; }
+        if (!price || price <= 0) { showToast('⚠️ Enter valid price!', 'error'); return; }
+        if (expiryType === 'date' && !expiry) { showToast('⚠️ Select expiry date!', 'error'); return; }
+
+        var total = quantity * price * (1 - discount / 100);
+        data.incoming.push({
+            id: nextId.incoming++,
+            material_id: material_id,
+            company: company,
+            quantity: quantity,
+            unit: unit,
+            price: price,
+            discount: discount,
+            total: total,
+            date: new Date().toISOString().split('T')[0],
+            expiry: expiry,
+            location: location,
+            batch: batch,
+            notes: notes
+        });
+
+        document.getElementById('incQty').value = '1';
+        document.getElementById('incPrice').value = '';
+        document.getElementById('incDiscount').value = '0';
+        document.getElementById('incExpiry').value = '';
+        document.getElementById('incLocation').value = '';
+        document.getElementById('incBatch').value = '';
+        document.getElementById('incNotes').value = '';
+
+        saveData();
+        updateAll();
+        var msg = '✅ Received ' + quantity + ' ' + unit + ' of ' + getMaterialName(material_id) + '\nTotal: ' + formatCurrency(total);
+        showToast(msg);
+        alert(msg);
+    }
+
+    // ============================================
+    // SAVE OUTGOING
+    // ============================================
+    function saveOutgoing() {
+        var material_id = parseInt(document.getElementById('outMaterial').value);
+        var company = document.getElementById('outCompany').value;
+        var technician = document.getElementById('outTech').value;
+        var quantity = parseInt(document.getElementById('outQty').value);
+        var unit = document.getElementById('outUnit').value;
+        var caseNum = document.getElementById('outCase').value.trim();
+        var notes = document.getElementById('outNotes').value.trim();
+
+        if (!material_id) { showToast('⚠️ Select a material!', 'error'); return; }
+        if (!company) { showToast('⚠️ Select a company!', 'error'); return; }
+        if (!technician) { showToast('⚠️ Select a technician!', 'error'); return; }
+        if (!quantity || quantity < 1) { showToast('⚠️ Enter valid quantity!', 'error'); return; }
+
+        var stock = getCompanyStock(material_id, company);
+        if (stock < quantity) {
+            showToast('❌ Only ' + stock + ' ' + unit + ' available from ' + company, 'error');
+            return;
+        }
+
+        var material = getMaterial(material_id);
+        var total = quantity * material.price;
+
+        data.outgoing.push({
+            id: nextId.outgoing++,
+            material_id: material_id,
+            company: company,
+            technician: technician,
+            quantity: quantity,
+            unit: unit,
+            cost: material.price,
+            total: total,
+            date: new Date().toISOString().split('T')[0],
+            case: caseNum,
+            notes: notes
+        });
+
+        document.getElementById('outQty').value = '1';
+        document.getElementById('outCase').value = '';
+        document.getElementById('outNotes').value = '';
+
+        saveData();
+        updateAll();
+        var msg = '✅ Issued ' + quantity + ' ' + unit + ' to ' + technician + '\nTotal: ' + formatCurrency(total);
+        showToast(msg);
+        alert(msg);
+    }
+
+    // ============================================
+    // UPDATE DROPDOWNS
+    // ============================================
+    function updateDropdowns() {
+        var matSelects = ['incMaterial', 'outMaterial'];
+        for (var s = 0; s < matSelects.length; s++) {
+            var select = document.getElementById(matSelects[s]);
+            if (!select) continue;
+            var val = select.value;
+            select.innerHTML = '<option value="">Select Material</option>';
+            for (var i = 0; i < data.materials.length; i++) {
+                var m = data.materials[i];
+                select.innerHTML += '<option value="' + m.id + '">' + m.name + ' (' + m.company + ' - SAR ' + m.price.toFixed(2) + '/' + m.unit + ')</option>';
+            }
+            select.value = val;
+        }
+
+        var compSelects = ['incCompany', 'outCompany', 'addMatCompany'];
+        for (var s = 0; s < compSelects.length; s++) {
+            var select = document.getElementById(compSelects[s]);
+            if (!select) continue;
+            var val = select.value;
+            select.innerHTML = '<option value="">Select Company</option>';
+            for (var i = 0; i < data.companies.length; i++) {
+                select.innerHTML += '<option value="' + data.companies[i].name + '">' + data.companies[i].name + '</option>';
+            }
+            select.value = val;
+        }
+
+        var techSelect = document.getElementById('outTech');
+        if (techSelect) {
+            var val = techSelect.value;
+            techSelect.innerHTML = '<option value="">Select Technician</option>';
+            for (var i = 0; i < data.technicians.length; i++) {
+                techSelect.innerHTML += '<option value="' + data.technicians[i].name + '">' + data.technicians[i].name + '</option>';
+            }
+            techSelect.value = val;
+        }
+    }
+
+    // ============================================
+    // TOGGLE EXPIRY
+    // ============================================
+    function toggleExpiry() {
+        var type = document.getElementById('incExpiryType').value;
+        var group = document.getElementById('incExpiryGroup');
+        if (group) {
+            group.style.display = type === 'date' ? 'block' : 'none';
+        }
+    }
+
+    // ============================================
+    // LIST TABS
+    // ============================================
+    function showListTab(type) {
+        document.querySelectorAll('.list-tabs button').forEach(function(b) { b.classList.remove('active'); });
+        document.querySelectorAll('.list-content').forEach(function(c) { c.classList.remove('active'); });
+        
+        if (type === 'companies') {
+            document.querySelector('.list-tabs button:nth-child(1)').classList.add('active');
+            document.getElementById('listCompanies').classList.add('active');
+        } else if (type === 'materials') {
+            document.querySelector('.list-tabs button:nth-child(2)').classList.add('active');
+            document.getElementById('listMaterials').classList.add('active');
+        } else if (type === 'technicians') {
+            document.querySelector('.list-tabs button:nth-child(3)').classList.add('active');
+            document.getElementById('listTechnicians').classList.add('active');
+        }
+        updateLists();
+    }
+
+    // ============================================
+    // UPDATE LISTS
+    // ============================================
+    function clearListsFilter() {
+        document.getElementById('listsStartDate').value = '';
+        document.getElementById('listsEndDate').value = '';
+        updateLists();
+    }
+
+    function updateLists() {
+        var startDate = document.getElementById('listsStartDate').value;
+        var endDate = document.getElementById('listsEndDate').value;
+        
+        var totalCompanies = data.companies.length;
+        var totalMaterials = data.materials.length;
+        var totalTechnicians = data.technicians.length;
+        var totalCost = 0;
+        var totalReceived = 0;
+        var totalIssued = 0;
+        
+        for (var i = 0; i < data.incoming.length; i++) {
+            var item = data.incoming[i];
+            if (isInRange(item.date, startDate, endDate)) {
+                totalCost += item.total;
+                totalReceived += item.quantity;
+            }
+        }
+        for (var i = 0; i < data.outgoing.length; i++) {
+            var item = data.outgoing[i];
+            if (isInRange(item.date, startDate, endDate)) {
+                totalIssued += item.quantity;
+            }
+        }
+        
+        var activeCompanies = 0;
+        var companyNames = {};
+        for (var i = 0; i < data.incoming.length; i++) {
+            if (isInRange(data.incoming[i].date, startDate, endDate)) {
+                if (!companyNames[data.incoming[i].company]) {
+                    companyNames[data.incoming[i].company] = true;
+                    activeCompanies++;
+                }
+            }
+        }
+        for (var i = 0; i < data.outgoing.length; i++) {
+            if (isInRange(data.outgoing[i].date, startDate, endDate)) {
+                if (!companyNames[data.outgoing[i].company]) {
+                    companyNames[data.outgoing[i].company] = true;
+                    activeCompanies++;
+                }
+            }
+        }
+        
+        var activeTechs = 0;
+        var techNames = {};
+        for (var i = 0; i < data.outgoing.length; i++) {
+            if (isInRange(data.outgoing[i].date, startDate, endDate)) {
+                if (!techNames[data.outgoing[i].technician]) {
+                    techNames[data.outgoing[i].technician] = true;
+                    activeTechs++;
+                }
+            }
+        }
+        
+        var activeMaterials = 0;
+        var matIds = {};
+        for (var i = 0; i < data.incoming.length; i++) {
+            if (isInRange(data.incoming[i].date, startDate, endDate)) {
+                if (!matIds[data.incoming[i].material_id]) {
+                    matIds[data.incoming[i].material_id] = true;
+                    activeMaterials++;
+                }
+            }
+        }
+        for (var i = 0; i < data.outgoing.length; i++) {
+            if (isInRange(data.outgoing[i].date, startDate, endDate)) {
+                if (!matIds[data.outgoing[i].material_id]) {
+                    matIds[data.outgoing[i].material_id] = true;
+                    activeMaterials++;
+                }
+            }
+        }
+        
+        document.getElementById('listTotalCompanies').textContent = activeCompanies + ' / ' + totalCompanies;
+        document.getElementById('listTotalMaterials').textContent = activeMaterials + ' / ' + totalMaterials;
+        document.getElementById('listTotalTechnicians').textContent = activeTechs + ' / ' + totalTechnicians;
+        document.getElementById('listTotalCost').textContent = formatCurrency(totalCost);
+        document.getElementById('listTotalReceived').textContent = totalReceived;
+        document.getElementById('listTotalIssued').textContent = totalIssued;
+        
+        // Companies
+        var tbody = document.getElementById('companyList');
+        var companyData = [];
+        for (var i = 0; i < data.companies.length; i++) {
+            var c = data.companies[i];
+            var spent = 0;
+            for (var j = 0; j < data.incoming.length; j++) {
+                if (data.incoming[j].company === c.name && isInRange(data.incoming[j].date, startDate, endDate)) {
+                    spent += data.incoming[j].total;
+                }
+            }
+            if (spent > 0 || (startDate && endDate)) {
+                companyData.push({ company: c, spent: spent });
+            }
+        }
+        
+        if (companyData.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#a0aec0;padding:20px;">No companies with transactions in selected date range</td></tr>';
+        } else {
+            var html = '';
+            for (var i = 0; i < companyData.length; i++) {
+                var c = companyData[i].company;
+                html += '<tr><td>' + (i+1) + '</td><td><strong>' + c.name + '</strong></td><td>' + (c.contact || '-') + '</td><td>' + (c.phone || '-') + '</td><td>' + (c.email || '-') + '</td><td>' + formatCurrency(companyData[i].spent) + '</td></tr>';
+            }
+            tbody.innerHTML = html;
+        }
+
+        // Materials
+        var tbody2 = document.getElementById('materialList');
+        var materialData = [];
+        for (var i = 0; i < data.materials.length; i++) {
+            var m = data.materials[i];
+            var received = 0;
+            var issued = 0;
+            for (var j = 0; j < data.incoming.length; j++) {
+                if (data.incoming[j].material_id === m.id && isInRange(data.incoming[j].date, startDate, endDate)) {
+                    received += data.incoming[j].quantity;
+                }
+            }
+            for (var j = 0; j < data.outgoing.length; j++) {
+                if (data.outgoing[j].material_id === m.id && isInRange(data.outgoing[j].date, startDate, endDate)) {
+                    issued += data.outgoing[j].quantity;
+                }
+            }
+            if (received > 0 || issued > 0 || (startDate && endDate)) {
+                materialData.push({ material: m, received: received, issued: issued });
+            }
+        }
+        
+        if (materialData.length === 0) {
+            tbody2.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#a0aec0;padding:20px;">No materials with transactions in selected date range</td></tr>';
+        } else {
+            var html = '';
+            for (var i = 0; i < materialData.length; i++) {
+                var m = materialData[i].material;
+                var stock = materialData[i].received - materialData[i].issued;
+                var color = stock <= 0 ? '#e53e3e' : stock < 5 ? '#ed8936' : '#2b6cb0';
+                html += '<tr><td>' + (i+1) + '</td><td><strong>' + m.name + '</strong></td><td>' + m.company + '</td><td>' + m.unit + '</td><td>' + materialData[i].received + '</td><td>' + materialData[i].issued + '</td><td><strong style="color:' + color + ';">' + stock + '</strong></td></tr>';
+            }
+            tbody2.innerHTML = html;
+        }
+
+        // Technicians
+        var tbody3 = document.getElementById('technicianList');
+        var techData = [];
+        for (var i = 0; i < data.technicians.length; i++) {
+            var t = data.technicians[i];
+            var totalQty = 0;
+            var totalCost = 0;
+            for (var j = 0; j < data.outgoing.length; j++) {
+                if (data.outgoing[j].technician === t.name && isInRange(data.outgoing[j].date, startDate, endDate)) {
+                    totalQty += data.outgoing[j].quantity;
+                    totalCost += data.outgoing[j].total;
+                }
+            }
+            if (totalQty > 0 || (startDate && endDate)) {
+                techData.push({ technician: t, totalQty: totalQty, totalCost: totalCost });
+            }
+        }
+        
+        if (techData.length === 0) {
+            tbody3.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#a0aec0;padding:20px;">No technicians with transactions in selected date range</td></tr>';
+        } else {
+            var html = '';
+            for (var i = 0; i < techData.length; i++) {
+                var t = techData[i].technician;
+                html += '<tr><td>' + (i+1) + '</td><td><strong>' + t.name + '</strong></td><td>' + (t.specialization || '-') + '</td><td>' + techData[i].totalQty + '</td><td>' + formatCurrency(techData[i].totalCost) + '</td></tr>';
+            }
+            tbody3.innerHTML = html;
+        }
+    }
+
+    // ============================================
+    // UPDATE INCOMING
+    // ============================================
+    function clearIncFilter() {
+        document.getElementById('incStartDate').value = '';
+        document.getElementById('incEndDate').value = '';
+        updateIncoming();
+    }
+
+    function updateIncoming() {
+        var startDate = document.getElementById('incStartDate').value;
+        var endDate = document.getElementById('incEndDate').value;
+        
+        var tbody = document.getElementById('incomingTable');
+        var filtered = data.incoming.filter(function(item) {
+            return isInRange(item.date, startDate, endDate);
+        });
+        
+        if (filtered.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#a0aec0;padding:20px;">No records</td></tr>';
+        } else {
+            var html = '';
+            for (var i = filtered.length - 1; i >= 0; i--) {
+                var item = filtered[i];
+                var expiryDisplay = item.expiry === 'unlimited' ? '♾️ Unlimited' : formatDate(item.expiry);
+                html += '<tr><td>' + formatDate(item.date) + '</td><td>' + getMaterialName(item.material_id) + '</td><td>' + item.company + '</td><td>' + item.quantity + '</td><td>' + item.unit + '</td><td>' + formatCurrency(item.total) + '</td><td>' + expiryDisplay + '</td><td><button class="small-btn delete" onclick="deleteIncoming(' + item.id + ')">🗑️</button></td></tr>';
+            }
+            tbody.innerHTML = html;
+        }
+    }
+
+    // ============================================
+    // UPDATE OUTGOING
+    // ============================================
+    function clearOutFilter() {
+        document.getElementById('outStartDate').value = '';
+        document.getElementById('outEndDate').value = '';
+        updateOutgoing();
+    }
+
+    function updateOutgoing() {
+        var startDate = document.getElementById('outStartDate').value;
+        var endDate = document.getElementById('outEndDate').value;
+        
+        var tbody = document.getElementById('outgoingTable');
+        var filtered = data.outgoing.filter(function(item) {
+            return isInRange(item.date, startDate, endDate);
+        });
+        
+        if (filtered.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#a0aec0;padding:20px;">No records</td></tr>';
+        } else {
+            var html = '';
+            for (var i = filtered.length - 1; i >= 0; i--) {
+                var item = filtered[i];
+                html += '<tr><td>' + formatDate(item.date) + '</td><td>' + getMaterialName(item.material_id) + '</td><td>' + item.company + '</td><td>' + item.technician + '</td><td>' + item.quantity + '</td><td>' + item.unit + '</td><td>' + formatCurrency(item.total) + '</td><td><button class="small-btn delete" onclick="deleteOutgoing(' + item.id + ')">🗑️</button></td></tr>';
+            }
+            tbody.innerHTML = html;
+        }
+    }
+
+    // ============================================
+    // UPDATE STOCK
+    // ============================================
+    function clearStockFilter() {
+        document.getElementById('stockStartDate').value = '';
+        document.getElementById('stockEndDate').value = '';
+        updateStock();
+    }
+
+    function updateStock() {
+        var startDate = document.getElementById('stockStartDate').value;
+        var endDate = document.getElementById('stockEndDate').value;
+        
+        var tbody = document.getElementById('stockTable');
+        if (data.materials.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#a0aec0;padding:20px;">No materials</td></tr>';
+        } else {
+            var html = '';
+            for (var i = 0; i < data.materials.length; i++) {
+                var m = data.materials[i];
+                var received = 0;
+                var issued = 0;
+                for (var j = 0; j < data.incoming.length; j++) {
+                    if (data.incoming[j].material_id === m.id && isInRange(data.incoming[j].date, startDate, endDate)) {
+                        received += data.incoming[j].quantity;
+                    }
+                }
+                for (var j = 0; j < data.outgoing.length; j++) {
+                    if (data.outgoing[j].material_id === m.id && isInRange(data.outgoing[j].date, startDate, endDate)) {
+                        issued += data.outgoing[j].quantity;
+                    }
+                }
+                var stock = received - issued;
+                var color = stock <= 0 ? '#e53e3e' : stock < 5 ? '#ed8936' : '#2b6cb0';
+                html += '<tr><td><strong>' + m.name + '</strong></td><td>' + m.company + '</td><td>' + m.unit + '</td><td>' + received + '</td><td>' + issued + '</td><td><strong style="color:' + color + ';">' + stock + '</strong></td><td>SAR ' + m.price.toFixed(2) + '</td></tr>';
+            }
+            tbody.innerHTML = html;
+        }
+        
+        prepareStockReport();
+    }
+
+    // ============================================
+    // STOCK REPORT
+    // ============================================
+    function prepareStockReport() {
+        var startDate = document.getElementById('stockStartDate').value;
+        var endDate = document.getElementById('stockEndDate').value;
+        
+        var totalMaterials = 0;
+        var totalReceived = 0;
+        var totalIssued = 0;
+        var totalValue = 0;
+        var rows = [];
+        
+        for (var i = 0; i < data.materials.length; i++) {
+            var m = data.materials[i];
+            var received = 0;
+            var issued = 0;
+            for (var j = 0; j < data.incoming.length; j++) {
+                if (data.incoming[j].material_id === m.id && isInRange(data.incoming[j].date, startDate, endDate)) {
+                    received += data.incoming[j].quantity;
+                }
+            }
+            for (var j = 0; j < data.outgoing.length; j++) {
+                if (data.outgoing[j].material_id === m.id && isInRange(data.outgoing[j].date, startDate, endDate)) {
+                    issued += data.outgoing[j].quantity;
+                }
+            }
+            var stock = received - issued;
+            var value = stock * m.price;
+            
+            if (stock > 0 || received > 0 || issued > 0) {
+                totalMaterials++;
+                totalReceived += received;
+                totalIssued += issued;
+                totalValue += value;
+                rows.push({
+                    name: m.name,
+                    company: m.company,
+                    unit: m.unit,
+                    received: received,
+                    issued: issued,
+                    stock: stock,
+                    price: m.price,
+                    value: value
+                });
+            }
+        }
+        
+        document.getElementById('reportLabName').textContent = COMPANY_NAME;
+        document.getElementById('reportVat').textContent = 'VAT: ' + VAT_NUMBER + ' | CR: ' + CR_NUMBER;
+        document.getElementById('reportAddress').textContent = COMPANY_ADDRESS;
+        document.getElementById('reportCompanyName').textContent = COMPANY_NAME;
+        document.getElementById('reportVatNumber').textContent = VAT_NUMBER;
+        document.getElementById('reportCrNumber').textContent = CR_NUMBER;
+        
+        var now = new Date();
+        var dateStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+        document.getElementById('reportDate').textContent = dateStr;
+        document.getElementById('reportGeneratedDate').textContent = now.toLocaleString();
+        
+        var monthYear = getMonthYear();
+        if (startDate && endDate) {
+            var start = new Date(startDate);
+            var end = new Date(endDate);
+            var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            if (start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear()) {
+                document.getElementById('reportPeriod').textContent = 'For the Month of ' + months[start.getMonth()] + ' ' + start.getFullYear();
+            } else {
+                document.getElementById('reportPeriod').textContent = 'From ' + startDate + ' to ' + endDate;
+            }
+        } else {
+            document.getElementById('reportPeriod').textContent = 'For the Month of ' + monthYear;
+        }
+        
+        document.getElementById('reportTotalMaterials').textContent = totalMaterials;
+        document.getElementById('reportTotalReceived').textContent = totalReceived;
+        document.getElementById('reportTotalIssued').textContent = totalIssued;
+        document.getElementById('reportTotalValue').textContent = formatCurrency(totalValue);
+        document.getElementById('reportTotalValue2').textContent = formatCurrency(totalValue);
+        
+        var tbody = document.getElementById('reportTableBody');
+        if (rows.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:30px;color:#a0aec0;">No data available for this period</td></tr>';
+            document.getElementById('reportTotalPrice').textContent = 'SAR 0.00';
+        } else {
+            var html = '';
+            var totalPrice = 0;
+            for (var i = 0; i < rows.length; i++) {
+                var r = rows[i];
+                var stockColor = r.stock <= 0 ? '#e53e3e' : r.stock < 5 ? '#ed8936' : '#2b6cb0';
+                html += '<tr>' +
+                    '<td>' + (i+1) + '</td>' +
+                    '<td><strong>' + r.name + '</strong></td>' +
+                    '<td>' + r.company + '</td>' +
+                    '<td>' + r.unit + '</td>' +
+                    '<td style="text-align:center;">' + r.received + '</td>' +
+                    '<td style="text-align:center;">' + r.issued + '</td>' +
+                    '<td style="text-align:center;font-weight:bold;color:' + stockColor + ';">' + r.stock + '</td>' +
+                    '<td style="text-align:right;">' + r.price.toFixed(2) + '</td>' +
+                    '<td style="text-align:right;">' + r.value.toFixed(2) + '</td>' +
+                '</tr>';
+                totalPrice += r.price;
+            }
+            tbody.innerHTML = html;
+            document.getElementById('reportTotalPrice').textContent = 'SAR ' + totalPrice.toFixed(2);
+        }
+    }
+
+    function printStockReport() {
+        prepareStockReport();
+        var printArea = document.getElementById('printArea');
+        printArea.style.display = 'block';
+        
+        setTimeout(function() {
+            window.print();
+            setTimeout(function() {
+                printArea.style.display = 'none';
+            }, 1000);
+        }, 500);
+    }
+
+    // ============================================
+    // UPDATE EXPIRY
+    // ============================================
+    function updateExpiry() {
+        var filter = document.getElementById('expiryFilter').value;
+        var tbody = document.getElementById('expiryTable');
+        var rows = [];
+        var today = new Date();
+        today.setHours(0,0,0,0);
+        
+        for (var i = 0; i < data.incoming.length; i++) {
+            var item = data.incoming[i];
+            if (!item.expiry || item.expiry === 'unlimited') continue;
+            var materialName = getMaterialName(item.material_id);
+            if (!materialName) continue;
+            var stock = getMaterialStock(item.material_id);
+            if (stock <= 0) continue;
+            
+            var expDate = new Date(item.expiry);
+            expDate.setHours(0,0,0,0);
+            var diff = Math.ceil((expDate - today) / (1000 * 60 * 60 * 24));
+            var status = diff < 0 ? 'expired' : diff <= 30 ? 'warning' : 'good';
+            
+            if (filter === 'expired' && status !== 'expired') continue;
+            if (filter === 'warning' && status !== 'warning') continue;
+            if (filter === 'good' && status !== 'good') continue;
+            
+            rows.push({
+                material: materialName,
+                company: item.company,
+                batch: item.batch || '-',
+                stock: stock,
+                unit: item.unit,
+                expiry: item.expiry,
+                status: status,
+                days: diff
+            });
+        }
+        
+        rows.sort(function(a, b) { return new Date(a.expiry) - new Date(b.expiry); });
+        
+        if (rows.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#a0aec0;padding:20px;">No materials with expiry dates</td></tr>';
+        } else {
+            var html = '';
+            for (var i = 0; i < rows.length; i++) {
+                var r = rows[i];
+                var statusBadge = '';
+                var daysText = '';
+                if (r.status === 'expired') {
+                    statusBadge = '<span class="badge-expired">🔴 EXPIRED</span>';
+                    daysText = 'Expired ' + Math.abs(r.days) + ' days ago';
+                } else if (r.status === 'warning') {
+                    statusBadge = '<span class="badge-warning">🟡 Expiring Soon</span>';
+                    daysText = r.days + ' days left';
+                } else {
+                    statusBadge = '<span class="badge-good">🟢 Safe</span>';
+                    daysText = r.days + ' days left';
+                }
+                html += '<tr><td><strong>' + r.material + '</strong></td><td>' + r.company + '</td><td>' + r.batch + '</td><td>' + r.stock + '</td><td>' + r.unit + '</td><td>' + formatDate(r.expiry) + '</td><td>' + statusBadge + '</td><td>' + daysText + '</td></tr>';
+            }
+            tbody.innerHTML = html;
+        }
+    }
+
+    // ============================================
+    // UPDATE DASHBOARD
+    // ============================================
+    function clearDashFilter() {
+        document.getElementById('dashStartDate').value = '';
+        document.getElementById('dashEndDate').value = '';
+        updateDashboard();
+    }
+
+    function updateDashboard() {
+        var startDate = document.getElementById('dashStartDate').value;
+        var endDate = document.getElementById('dashEndDate').value;
+        
+        document.getElementById('dashMaterials').textContent = data.materials.length;
+        
+        var totalReceived = 0;
+        var totalIssued = 0;
+        var totalCost = 0;
+        var activities = [];
+        
+        for (var i = 0; i < data.incoming.length; i++) {
+            var item = data.incoming[i];
+            if (isInRange(item.date, startDate, endDate)) {
+                totalReceived += item.quantity;
+                totalCost += item.total;
+                activities.push({
+                    date: item.date,
+                    type: '📥 Received',
+                    material: getMaterialName(item.material_id),
+                    company: item.company,
+                    qty: item.quantity,
+                    unit: item.unit,
+                    cost: item.total
+                });
+            }
+        }
+        for (var i = 0; i < data.outgoing.length; i++) {
+            var item = data.outgoing[i];
+            if (isInRange(item.date, startDate, endDate)) {
+                totalIssued += item.quantity;
+                activities.push({
+                    date: item.date,
+                    type: '📤 Issued',
+                    material: getMaterialName(item.material_id),
+                    company: item.company,
+                    qty: item.quantity,
+                    unit: item.unit,
+                    cost: item.total
+                });
+            }
+        }
+        
+        document.getElementById('dashReceived').textContent = totalReceived;
+        document.getElementById('dashIssued').textContent = totalIssued;
+        document.getElementById('dashCost').textContent = formatCurrency(totalCost);
+        
+        activities.sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
+        
+        var tbody = document.getElementById('dashTable');
+        if (activities.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#a0aec0;padding:30px;">No activity</td></tr>';
+        } else {
+            var html = '';
+            for (var i = 0; i < Math.min(activities.length, 20); i++) {
+                var a = activities[i];
+                html += '<tr><td>' + formatDate(a.date) + '</td><td>' + a.type + '</td><td>' + (a.material || '-') + '</td><td>' + a.company + '</td><td>' + a.qty + ' ' + a.unit + '</td><td>' + formatCurrency(a.cost) + '</td></tr>';
+            }
+            tbody.innerHTML = html;
+        }
+    }
+
+    // ============================================
+    // UPDATE ALL
+    // ============================================
+    function updateAll() {
+        updateDropdowns();
+        updateLists();
+        updateIncoming();
+        updateOutgoing();
+        updateStock();
+        updateDashboard();
+        updateExpiry();
+        toggleExpiry();
+        prepareStockReport();
+    }
+
+    // ============================================
+    // INIT - Check for existing session
+    // ============================================
+    (function init() {
+        // Check if session exists
+        var sessionExists = localStorage.getItem('dentalSession');
+        if (sessionExists === 'true') {
+            // Auto-login
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('appContainer').classList.add('show');
+            document.getElementById('userDisplay').textContent = '👤 ' + VALID_USERNAME;
+            loadData();
+            updateAll();
+            toggleExpiry();
+            clearSessionTimers();
+            startSessionTimer();
+            showToast('🔄 Session restored. Welcome back!', 'success');
+        } else {
+            // Show login page
+            document.getElementById('loginPage').style.display = 'block';
+            document.getElementById('appContainer').classList.remove('show');
+        }
+    })();
+
+    // Auto-save every 5 seconds (only when logged in)
+    setInterval(function() {
+        if (document.getElementById('appContainer').classList.contains('show')) {
+            saveData();
+        }
+    }, 5000);
+
+    console.log('🦷 Cusp Dental Lab Inventory System loaded!');
+    console.log('🔐 Login required');
+    console.log('👤 Username: cusplab0098 / Password: 12345678');
+    console.log('⏰ Session expires after 12 hours');
+    console.log('✏️ Change credentials at the top of the script');
+</script>
+
+</body>
+</html>
