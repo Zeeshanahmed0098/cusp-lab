@@ -6,3 +6,9 @@ clear button hover: #de2424
 logout button: #de2424
 
 
+│  STEP 1: Make changes in VS Code                              │
+│  STEP 2: git add .                                            │
+│  STEP 3: git commit -m "message"                              │
+│  STEP 4: git push origin main                                 │
+│  STEP 5: Wait 1-2 minutes                                     │
+│  STEP 6: Refresh your site (F5)    
