@@ -1,2 +1,8 @@
-hover colour: #1a365d;
-button colour: #2b6cb0
+apply button hover colour: #1a365d;
+apply button colour: #2b6cb0
+clear button hover: #de2424
+
+
+logout button: #de2424
+
+
