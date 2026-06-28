@@ -896,7 +896,7 @@ function updateIncoming() {
 }
 
 // ============================================
-// UPDATE OUTGOING
+// UPDATEOUTGOING
 // ============================================
 function clearOutFilter() {
     document.getElementById('outStartDate').value = '';
